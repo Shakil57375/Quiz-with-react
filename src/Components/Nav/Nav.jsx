@@ -1,4 +1,4 @@
-import Account from "./Account";
+import Account from "../Account/Account";
 import { Link } from "react-router-dom";
 const Nav = () => {
   return (
