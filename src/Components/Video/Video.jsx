@@ -1,5 +1,5 @@
 import "./Video.css";
-import image from "../../../images/success.png"
+import image from "../../../images/3.jpg"
 const Video = () => {
   return (
     <div>
