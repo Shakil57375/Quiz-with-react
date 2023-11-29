@@ -8,10 +8,11 @@ import { MdAlternateEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import { MdLockClock } from "react-icons/md";
 import "./SignUp.css";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   return (
     <div className="mt-40">
-      <h1>Create an account</h1>
+      <h1 className="text-2xl font-bold">Create an account</h1>
       <div className="column">
         <Illustration />
         <Form className={`signUp`}>
@@ -38,7 +39,11 @@ const SignUp = () => {
           <Checkbox text="I agree to the Terms &amp; conditions" />
           <Button>Submit Now</Button>
           <div className="info">
-            Already have an account? <a href="login.html">Login</a> instead.
+            Already have an account?{" "}
+            <Link className="text-blue-600 underline" to={"/login"}>
+              Login
+            </Link>{" "}
+            instead.
           </div>
         </Form>
       </div>

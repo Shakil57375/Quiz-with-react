@@ -1,0 +1,29 @@
+/* signup component */
+:root {
+  --bodyBackground: #f2f4f8;
+  --successGreen: #00ff84;
+  --dangerRed: #ffc0c7;
+  --questionBG: #e4e8ee;
+  --fontPrimary: #002333;
+  --active: #2dbf64;
+}
+.login {
+  height: 500px;
+}
+
+.info {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 1023px) {
+  .column {
+    grid-template-columns: 1fr;
+  }
+}
