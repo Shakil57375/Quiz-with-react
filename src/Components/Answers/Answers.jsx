@@ -1,8 +1,11 @@
-import "./Answers.css"
+import Checkbox from "../Checkbox/Checkbox";
+import "./Answers.css";
 const Answers = () => {
   return (
-    <div>Answers</div>
-  )
-}
+    <div>
+      <Checkbox />
+    </div>
+  );
+};
 
-export default Answers
+export default Answers;
