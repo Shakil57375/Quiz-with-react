@@ -4,6 +4,7 @@ import Home from "../Components/Pages/Home/Home";
 import SignUp from "../Components/Pages/SignUp/SignUp";
 import Login from "../Components/Login/Login";
 import Quiz from "../Components/Pages/Quiz/Quiz";
+import Results from "../Components/Pages/Results/Results";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: "/quiz",
         element: <Quiz />,
       },
+      {
+        path: "/result",
+        element : <Results/>
+      }
     ],
   },
 ]);

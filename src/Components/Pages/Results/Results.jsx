@@ -3,7 +3,7 @@ import Summary from "../../Summary/Summary";
 import "./Results.css";
 const Results = () => {
   return (
-    <div>
+    <div className="mt-40">
       <Summary />
       <Analysis />
     </div>
