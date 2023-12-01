@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./ProgressBar.css";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight , FaArrowLeft } from "react-icons/fa";
 const ProgressBar = () => {
   return (
     <div className="progressBar">
       <div className="backButton">
-        <span className="material-icons-outlined"> arrow_back </span>
+        <FaArrowLeft/>
       </div>
       <div className="rangeArea">
         <div className="tooltip">24% Cimplete!</div>
@@ -13,12 +14,12 @@ const ProgressBar = () => {
           <div className="progress" style={{ width: "20%" }}></div>
         </div>
       </div>
-      <a href="result.html">
+      <Link to={"/result"}>
         <Button className="next">
           <span>Next Question</span>
           <FaArrowRight />
         </Button>
-      </a>
+      </Link>
     </div>
   );
 };
