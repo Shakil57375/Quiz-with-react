@@ -1,8 +1,13 @@
-import "./Results.css"
+import Analysis from "../../Analysis/Analysis";
+import Summary from "../../Summary/Summary";
+import "./Results.css";
 const Results = () => {
   return (
-    <div>Results</div>
-  )
-}
+    <div>
+      <Summary />
+      <Analysis />
+    </div>
+  );
+};
 
-export default Results
+export default Results;

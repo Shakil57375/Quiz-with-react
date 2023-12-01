@@ -24,8 +24,7 @@ const Login = () => {
             icon={<FaLock />}
           />
           <Button>
-            {" "}
-            <span>Submit Now</span>{" "}
+            <span>Submit Now</span>
           </Button>
           <div className="info">
             <span>{"Don't have an account"}</span>{" "}
