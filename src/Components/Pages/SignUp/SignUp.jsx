@@ -37,12 +37,14 @@ const SignUp = () => {
             icon={<MdLockClock />}
           />
           <Checkbox text="I agree to the Terms &amp; conditions" />
-          <Button>Submit Now</Button>
+          <Button>
+            <span>Submit Now</span>
+          </Button>
           <div className="info">
             Already have an account?{" "}
             <Link className="text-blue-600 underline" to={"/login"}>
               Login
-            </Link>{" "}
+            </Link>
             instead.
           </div>
         </Form>
