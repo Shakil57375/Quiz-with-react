@@ -5,6 +5,7 @@ import Results from "../Components/Pages/Results/Results";
 import Register from "../Components/Pages/Register/Register";
 import Login from "../Components/Pages/Login/Login";
 import Videos from "../Components/Videos/Videos";
+import Blogs from "../Components/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/result",
-        element : <Results/>
-      }
+        element: <Results />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
     ],
   },
 ]);
