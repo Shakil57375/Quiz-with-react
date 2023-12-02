@@ -22,8 +22,12 @@ const Header = () => {
   return (
     <div className="flex justify-between w-full  items-center lg:px-28 px-4 lg:py-6 py-4 bg-white shadow-2xl">
       <div className="text-2xl lg:text-3xl font-serif order-2 lg:order-1 font-bold cursor-pointer">
-        <Link to="/" className="sm:m-0 sm:p-0 lg:text-2xl text-xl ">
-          Recipe hunter
+        <Link to={"/"}>
+          <img
+            src="https://i.ibb.co/qdLgPnX/code-logo.png"
+            className="w-24 h-24"
+            alt=""
+          />
         </Link>
       </div>
       <div className="flex justify-between order-1 lg:order-2 items-center flex-row-reverse lg:flex-row">
@@ -47,11 +51,11 @@ const Header = () => {
             <ActiveLink className="font-mono" to="/">
               Home
             </ActiveLink>
+            <ActiveLink className="font-mono" to="/quiz">
+              Quiz
+            </ActiveLink>
             <ActiveLink className="font-mono" to="/blogs">
               Blogs
-            </ActiveLink>
-            <ActiveLink className="font-mono" to="/about">
-              About Us
             </ActiveLink>
           </div>
         </div>

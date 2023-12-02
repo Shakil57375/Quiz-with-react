@@ -1,9 +1,9 @@
-import Videos from "../../Videos/Videos";
+import Banner from "../../Banner/Banner";
 
 const Home = () => {
   return (
-    <div >
-      <Videos />
+    <div>
+      <Banner />
     </div>
   );
 };
