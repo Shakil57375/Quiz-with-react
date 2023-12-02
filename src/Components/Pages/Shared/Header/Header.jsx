@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import "./Header.css";
 import { AuthContext } from "../../../../Context/AuthContext";
 import ActiveLink from "../../../ActiveLink/ActiveLink";
+import Button from "../../../Button/Button";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   // console.log(user);
@@ -77,7 +78,7 @@ const Header = () => {
         ) : (
           <div className="cursor-pointer">
             <Link to="/login">
-              <button className="d-btn">Login</button>
+              <Button>Login</Button>
             </Link>
           </div>
         )}

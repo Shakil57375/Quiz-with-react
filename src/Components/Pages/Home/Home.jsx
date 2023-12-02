@@ -2,7 +2,7 @@ import Videos from "../../Videos/Videos";
 
 const Home = () => {
   return (
-    <div className="mt-40">
+    <div >
       <Videos />
     </div>
   );

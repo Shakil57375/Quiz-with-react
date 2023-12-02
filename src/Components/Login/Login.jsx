@@ -8,7 +8,7 @@ import TextInput from "../TextInput/TextInput";
 import "./Login.css";
 const Login = () => {
   return (
-    <div className="mt-40">
+    <div >
       <h1 className="text-2xl font-bold">Login an account</h1>
       <div className="column">
         <Illustration />

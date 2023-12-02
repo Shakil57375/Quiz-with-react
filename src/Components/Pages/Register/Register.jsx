@@ -1,6 +1,7 @@
 import  { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
+import Button from "../../Button/Button";
 
 const Register = () => {
   const {
@@ -142,7 +143,7 @@ const Register = () => {
                 </a>
               </div>
               <div className="form-control mt-6">
-                <button className="d-btn">Register</button>
+                <Button>Register Now</Button>
               </div>
 
               <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">

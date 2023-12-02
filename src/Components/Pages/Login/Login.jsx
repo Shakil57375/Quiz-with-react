@@ -4,19 +4,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthContext";
+import Button from "../../Button/Button";
 
 const Login = () => {
   const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");  
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const location = useLocation();
-  const emailRef = useRef()
+  const emailRef = useRef();
   const from = location.state?.from?.pathname || "/";
-  const { loginUser, goggleRegister, githubRegister, forgetPass } = useContext(AuthContext);
+  const { loginUser, goggleRegister, forgetPass } = useContext(AuthContext);
   const handleSubmit = (event) => {
-    setError("")
-    setSuccess("")
+    setError("");
+    setSuccess("");
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -29,7 +30,7 @@ const Login = () => {
       loginUser(email, password)
         .then((result) => {
           console.log(result);
-          navigate(from, {replace : true});
+          navigate(from, { replace: true });
           setSuccess("User successfully loggedIn");
           form.reset();
         })
@@ -45,20 +46,7 @@ const Login = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         setSuccess("User Sign up successfully");
-        navigate(from, {replace : true});
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(error.message);
-      });
-  };
-  const handleGithubLogin = () => {
-    githubRegister()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        setSuccess("User Sign up successfully");
-        navigate(from);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -113,14 +101,14 @@ const Login = () => {
                   name="password"
                   required
                 />
-              <a href="#" className="label-text-alt link link-hover mt-3">
+                <a href="#" className="label-text-alt link link-hover mt-3">
                   Forget password?{" "}
                   <Link onClick={handleResetPass} className="text-blue-600">
                     Reset
                   </Link>
-              </a>
+                </a>
 
-              <p
+                <p
                   className="absolute top-12 right-3"
                   onClick={() => setShow(!show)}
                 >
@@ -149,7 +137,7 @@ const Login = () => {
                 </a>
               </div>
               <div className="form-control mt-6">
-                <button className="d-btn">Login</button>
+                <Button>Login</Button>
               </div>
               <div>
                 <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">
@@ -164,15 +152,7 @@ const Login = () => {
                     alt=""
                   />
                 </div>
-                <div className="">
-                  <img
-                    onClick={handleGithubLogin}
-                    className=" social-button cursor-pointer"
-                    src="https://i.ibb.co/g9f4P0S/github-btn.png"
-                    alt=""
-                  />
-                  <ToastContainer></ToastContainer>
-                </div>
+                <ToastContainer></ToastContainer>
               </div>
             </form>
           </div>
