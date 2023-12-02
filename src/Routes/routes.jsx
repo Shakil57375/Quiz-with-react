@@ -6,6 +6,7 @@ import Register from "../Components/Pages/Register/Register";
 import Login from "../Components/Pages/Login/Login";
 import Videos from "../Components/Videos/Videos";
 import Blogs from "../Components/Blogs/Blogs";
+import Quiz from "../Components/Pages/Quiz/Quiz";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/quiz",
+        path: "/video",
         element: <Videos />,
+      },
+      {
+        path: "/quiz",
+        element: <Quiz />,
       },
       {
         path: "/result",
