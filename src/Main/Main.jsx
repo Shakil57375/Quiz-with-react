@@ -1,13 +1,13 @@
-import { Outlet } from "react-router-dom"
-import Nav from "../Components/Nav/Nav"
+import { Outlet } from "react-router-dom";
+import Header from "../Components/Pages/Shared/Header/Header";
 
 const Main = () => {
   return (
     <div>
-        <Nav/>
-        <Outlet/>
+      <Header />
+      <Outlet />
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

@@ -143,7 +143,7 @@ const Login = () => {
               <div>
                 <a href="#" className="label-text-alt link link-hover">
                   New to my shop? Please{" "}
-                  <Link className="text-blue-600" to="/register">
+                  <Link className="text-blue-600" to="/signUp">
                     Register
                   </Link>
                 </a>
