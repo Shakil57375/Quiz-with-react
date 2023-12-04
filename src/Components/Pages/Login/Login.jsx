@@ -5,7 +5,6 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthContext";
 import Button from "../../Button/Button";
-
 const Login = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -90,6 +89,8 @@ const Login = () => {
                   required
                 />
               </div>
+              
+              
               <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>

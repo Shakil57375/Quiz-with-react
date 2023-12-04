@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import "./TextInput.css";
-const TextInput = ({ icon, ...rest }) => {
+const TextInput = ({ icon, className, ...rest  }) => {
   return (
     <div>
-      <div className="textInput">
+      <div className={className}>
         <input {...rest} />
         <span className="material-icons-outlined"> {icon} </span>
       </div>

@@ -1,15 +1,12 @@
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
 import Button from "../../Button/Button";
+import TextInput from "../../TextInput/TextInput";
 
 const Register = () => {
-  const {
-    registerUser,
-    goggleRegister,
-    updateUserData,
-    logOut,
-  } = useContext(AuthContext);
+  const { registerUser, goggleRegister, updateUserData, logOut } =
+    useContext(AuthContext);
   // console.log(githubSignUp);
   // console.log(registerUser);
   const [success, setSuccess] = useState("");
@@ -45,7 +42,7 @@ const Register = () => {
             .catch((error) => {
               console.log(error.message);
             });
-          navigate('/login');
+          navigate("/login");
         })
         .catch((error) => {
           console.log(error.message);
@@ -78,7 +75,7 @@ const Register = () => {
         setError(error.message);
       });
   };
- 
+
   return (
     <div>
       <div className="hero min-h-screen mt-6 bg-base-200">
@@ -132,6 +129,13 @@ const Register = () => {
                   required
                 />
               </div>
+
+              <TextInput
+                type="password"
+                className="textInput"
+                name="confirm_password"
+                placeholder="confirm password"
+              />
               <p className="text-red-700">{error}</p>
               <p className="text-green-600">{success}</p>
               <div>
