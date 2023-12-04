@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
+import { TbFidgetSpinner } from "react-icons/tb";
 import Button from "../../Button/Button";
 import TextInput from "../../TextInput/TextInput";
 
 const Register = () => {
-  const { registerUser, goggleRegister, updateUserData, logOut } =
+  const { loader, setLoader, registerUser, goggleRegister, updateUserData, logOut } =
     useContext(AuthContext);
   // console.log(githubSignUp);
   // console.log(registerUser);
@@ -42,11 +43,12 @@ const Register = () => {
             .catch((error) => {
               console.log(error.message);
             });
-          navigate("/login");
+            navigate(from, { replace: true });
         })
         .catch((error) => {
           console.log(error.message);
           setError(error.message);
+          setLoader(false)
         });
     }
     const updateData = (user, name, photo) => {
@@ -68,7 +70,7 @@ const Register = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         setSuccess("User Sign up successfully");
-        navigate(from);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -147,7 +149,14 @@ const Register = () => {
                 </a>
               </div>
               <div className="form-control mt-6">
-                <Button>Register Now</Button>
+                <Button>{loader ? (
+                <TbFidgetSpinner
+                  className="m-auto animate-spin"
+                  size={24}
+                ></TbFidgetSpinner>
+              ) : (
+                "Continue"
+              )}</Button>
               </div>
 
               <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">

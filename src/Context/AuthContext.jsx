@@ -50,6 +50,7 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         user,
         loader,
+        setLoader,
         registerUser,
         loginUser,
         goggleRegister,
