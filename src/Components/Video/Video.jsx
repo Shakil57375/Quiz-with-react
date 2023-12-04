@@ -11,7 +11,7 @@ const Video = () => {
   const location = useLocation();
   const handleLogin = () => {
     Swal.fire({
-      title: "Please login to select classes",
+      title: "To participate in the quiz, kindly log in.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
