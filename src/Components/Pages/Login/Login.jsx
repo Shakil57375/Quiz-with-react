@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { TbFidgetSpinner } from "react-icons/tb";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthContext";
@@ -13,7 +14,8 @@ const Login = () => {
   const location = useLocation();
   const emailRef = useRef();
   const from = location.state?.from?.pathname || "/";
-  const { loginUser, goggleRegister, forgetPass } = useContext(AuthContext);
+  const { loader, setLoader, loginUser, goggleRegister, forgetPass } =
+    useContext(AuthContext);
   const handleSubmit = (event) => {
     setError("");
     setSuccess("");
@@ -36,6 +38,7 @@ const Login = () => {
         .catch((error) => {
           console.log(error.message);
           setError(error.message);
+          setLoader(false);
         });
     }
   };
@@ -50,6 +53,7 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
         setError(error.message);
+        setLoader(false);
       });
   };
   const handleResetPass = () => {
@@ -65,6 +69,7 @@ const Login = () => {
       .catch((error) => {
         setError(error.message);
         console.log(error);
+        setLoader(false);
       });
   };
   return (
@@ -89,8 +94,7 @@ const Login = () => {
                   required
                 />
               </div>
-              
-              
+
               <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>
@@ -138,7 +142,16 @@ const Login = () => {
                 </a>
               </div>
               <div className="form-control mt-6">
-                <Button>Login</Button>
+                <Button>
+                  {loader ? (
+                    <TbFidgetSpinner
+                      className="m-auto animate-spin"
+                      size={24}
+                    ></TbFidgetSpinner>
+                  ) : (
+                    "Continue"
+                  )}
+                </Button>
               </div>
               <div>
                 <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">

@@ -44,7 +44,7 @@ const Header = () => {
           <div
             className={`links flex text-black  absolute lg:static duration-500 lg:flex-row flex-col justify-center text-lg ${
               open
-                ? "block left-16 top-16 -ml-16 z-20 lg:bg-inherit bg-red-100 w-full lg:text-black text-black shadow-2xl py-5 gap-2 pl-10"
+                ? "block left-16 top-20 -ml-16 z-20 lg:bg-inherit bg-red-100 w-full lg:text-black text-black shadow-2xl py-5 gap-2 pl-10"
                 : "hidden lg:block"
             }`}
           >
@@ -65,7 +65,7 @@ const Header = () => {
         {user ? (
           <div className="flex gap-2 cursor-pointer">
             <button className="d-btn" onClick={handleLogOut}>
-              Sign Out
+              <Button>Sign Out</Button>
             </button>
             <span className="text-white mr-0 lg:mr-3 ">
               {" "}
