@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../../Context/AuthContext";
 import Button from "../../Button/Button";
 const Login = () => {
@@ -58,12 +59,14 @@ const Login = () => {
   };
   const handleResetPass = () => {
     const email = emailRef.current.value;
+    console.log(email)
     if (!email) {
       toast("Please provide your email address to reset password");
       return;
     }
     forgetPass(email)
       .then(() => {
+        setLoader(false);
         toast("Please check your email");
       })
       .catch((error) => {
@@ -106,12 +109,13 @@ const Login = () => {
                   name="password"
                   required
                 />
-                <a href="#" className="label-text-alt link link-hover mt-3">
-                  Forget password?
-                  <Link onClick={handleResetPass} className="text-blue-600">
+
+                <div className="label-text-alt flex gap-1 items-center  mt-3 ">
+                  <span>Forget password?</span>
+                  <Link onClick={handleResetPass} className="text-blue-600 ">
                     Reset
                   </Link>
-                </a>
+                </div>
 
                 <p
                   className="absolute top-12 right-3"
