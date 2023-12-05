@@ -1,17 +1,34 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/AuthContext";
-import { TbFidgetSpinner } from "react-icons/tb";
+import { TbFidgetSpinner, TbPasswordUser } from "react-icons/tb";
+import { GiConfirmed } from "react-icons/gi";
+import { FaPerson } from "react-icons/fa6";
+import { MdEmail, MdInsertPhoto } from "react-icons/md";
 import Button from "../../Button/Button";
 import TextInput from "../../TextInput/TextInput";
+import Checkbox from "../../Checkbox/Checkbox";
 
 const Register = () => {
-  const { loader, setLoader, registerUser, goggleRegister, updateUserData, logOut } =
-    useContext(AuthContext);
+  const {
+    loader,
+    setLoader,
+    registerUser,
+    goggleRegister,
+    updateUserData,
+    logOut,
+  } = useContext(AuthContext);
   // console.log(githubSignUp);
   // console.log(registerUser);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [agree, setAgree] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -20,14 +37,15 @@ const Register = () => {
     setError("");
     setSuccess("");
     const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const photo = form.photo.value;
-    const password = form.password.value;
+    if (password !== confirmPassword) {
+      return setError("Passwords don't match!");
+    }
+    console.log(username, email, photo, password, confirmPassword, agree);
     if (password.length < 6) {
       setError("Please add more then 6 character");
       return;
     }
+    
     if ((email, password)) {
       registerUser(email, password)
         .then((result) => {
@@ -43,12 +61,12 @@ const Register = () => {
             .catch((error) => {
               console.log(error.message);
             });
-            navigate(from, { replace: true });
+          navigate("/login");
         })
         .catch((error) => {
           console.log(error.message);
           setError(error.message);
-          setLoader(false)
+          setLoader(false);
         });
     }
     const updateData = (user, name, photo) => {
@@ -75,7 +93,7 @@ const Register = () => {
       .catch((error) => {
         console.log(error);
         setError(error.message);
-        setLoader(false)
+        setLoader(false);
       });
   };
 
@@ -88,57 +106,75 @@ const Register = () => {
           </div>
           <div className="card flex-shrink-0 lg:w-[450px] sm:w-full shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit} className="card-body w-full">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="input input-bordered"
-                  name="name"
-                  required
+              <TextInput
+                type="text"
+                placeholder="Enter name"
+                icon={<FaPerson className="text-3xl" />}
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className={"textInput"}
+              />
+
+              <TextInput
+                type="email"
+                placeholder="Enter email"
+                icon={<MdEmail className="text-3xl" />}
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={"textInput"}
+              />
+
+              <TextInput
+                type="text"
+                placeholder="Photo url"
+                icon={<MdInsertPhoto className="text-3xl" />}
+                required
+                value={photo}
+                onChange={(e) => setPhoto(e.target.value)}
+                className={"textInput"}
+              />
+
+              <TextInput
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                icon={<TbPasswordUser className="text-3xl" />}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={"textInput"}
+              />
+
+              <div className="flex gap-2 items-center mt-2">
+                <Checkbox
+                  value={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                  className={"mt-1"}
                 />
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  name="email"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <span className="label-text">Photo URL</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="photo url"
-                  name="photo"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control relative">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  name="password"
-                  required
-                />
+                <personalbar>show password</personalbar>
               </div>
 
               <TextInput
                 type="password"
-                className="textInput"
-                name="confirm_password"
-                placeholder="confirm password"
+                placeholder="Confirm Password"
+                icon={<GiConfirmed className="text-3xl" />}
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={"textInput"}
               />
+
+              <div className="flex gap-2 items-center mt-2">
+                <Checkbox
+                  required
+                  value={agree}
+                  className={"mt-1"}
+                  onChange={(e) => setAgree(e.target.value)}
+                />
+                <p>I agree to the Terms &amp; Conditions</p>
+              </div>
+
               <p className="text-red-700">{error}</p>
               <p className="text-green-600">{success}</p>
               <div>
@@ -150,14 +186,16 @@ const Register = () => {
                 </a>
               </div>
               <div className="form-control mt-6">
-                <Button>{loader ? (
-                <TbFidgetSpinner
-                  className="m-auto animate-spin"
-                  size={24}
-                ></TbFidgetSpinner>
-              ) : (
-                "Continue"
-              )}</Button>
+                <Button>
+                  {loader ? (
+                    <TbFidgetSpinner
+                      className="m-auto animate-spin"
+                      size={24}
+                    ></TbFidgetSpinner>
+                  ) : (
+                    "Continue"
+                  )}
+                </Button>
               </div>
 
               <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">
