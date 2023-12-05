@@ -41,11 +41,40 @@ const Register = () => {
       return setError("Passwords don't match!");
     }
     console.log(username, email, photo, password, confirmPassword, agree);
+    // Password validation
     if (password.length < 6) {
-      setError("Please add more then 6 character");
+      setError("Password should be at least 6 characters long");
       return;
     }
-    
+
+    // Additional password validation criteria (customize as needed)
+    if (!/(?=.*[a-z])/.test(password)) {
+      setError("Password should contain at least one lowercase letter");
+      return;
+    }
+
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setError("Password should contain at least one uppercase letter");
+      return;
+    }
+
+    if (!/(?=.*\d)/.test(password)) {
+      setError("Password should contain at least one digit");
+      return;
+    }
+
+    if (!/(?=.*[!@#$%^&*])/.test(password)) {
+      setError(
+        "Password should contain at least one special character (!@#$%^&*)"
+      );
+      return;
+    }
+
+    if (/(\w)\1{2,}/.test(password)) {
+      setError("Password should not contain repeated characters (e.g., aaa)");
+      return;
+    }
+
     if ((email, password)) {
       registerUser(email, password)
         .then((result) => {
