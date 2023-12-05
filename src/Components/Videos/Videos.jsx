@@ -1,30 +1,60 @@
+import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import Video from "../Video/Video";
 import useVideoList from "../../Hooks/useVideoList";
 import Loader from "../Pages/Loader/Loader";
 
-const Videos = () => {
-  const { loading, error, videos } = useVideoList();
-  console.log(videos)
+export default function Videos() {
+  const [page, setPage] = useState(1);
+  const { loading, error, videos, hasMore } = useVideoList(page);
+
   return (
-    <div className="videos grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-5 my-6 mx-auto lg:w-full w-[90%]">
-      {videos.length > 0 &&
-        videos?.map((video) => {
-          <Link to={"/quiz"} key={video.youtubeID}>
-            <Video video = {video}/>
-          </Link>;
-        })}
-      {!loading && videos.length === 0 && (
-        <div className="text-yellow-400">No data found</div>
+    <div>
+      {videos.length > 0 && (
+        <InfiniteScroll
+          dataLength={videos.length}
+          hasMore={hasMore}
+          loader=<Loader />
+          next={() => setPage(page + 8)}
+        >
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+            {videos.map((video) =>
+              video.noq > 0 ? (
+                <Link
+                  to={{
+                    pathname: `/quiz/${video.youtubeID}`,
+                    state: {
+                      videoTitle: video.title,
+                    },
+                  }}
+                  key={video.youtubeID}
+                >
+                  <Video
+                    title={video.title}
+                    id={video.youtubeID}
+                    noq={video.noq}
+                  />
+                </Link>
+              ) : (
+                <Video
+                  title={video.title}
+                  id={video.youtubeID}
+                  noq={video.noq}
+                  key={video.youtubeID}
+                />
+              )
+            )}
+          </div>
+        </InfiniteScroll>
       )}
-      {error && <div className="text-yellow-400">there was an error</div>}
+      {!loading && videos.length === 0 && <div>No data found!</div>}
+      {error && <div>There was an error!</div>}
       {loading && (
         <div>
-          <Loader></Loader>
+          <Loader />
         </div>
       )}
     </div>
   );
-};
-
-export default Videos;
+}

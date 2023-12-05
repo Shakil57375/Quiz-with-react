@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         element: <Videos />,
       },
       {
-        path: "/quiz",
+        path: "/quiz/:id",
         element: (
           <PrivateRouter>
             <Quiz />
