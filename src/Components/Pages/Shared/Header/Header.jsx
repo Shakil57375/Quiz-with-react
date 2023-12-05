@@ -71,7 +71,7 @@ const Header = () => {
               {" "}
               <img
                 src={user.photoURL}
-                title={user.displayName ? user.displayName : " "}
+                title={user?.displayName ? user?.displayName : " "}
                 width={50}
                 height={50}
                 className="rounded-full"

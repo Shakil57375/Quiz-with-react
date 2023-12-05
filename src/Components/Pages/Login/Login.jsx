@@ -107,7 +107,7 @@ const Login = () => {
                   required
                 />
                 <a href="#" className="label-text-alt link link-hover mt-3">
-                  Forget password?{" "}
+                  Forget password?
                   <Link onClick={handleResetPass} className="text-blue-600">
                     Reset
                   </Link>
