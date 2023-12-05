@@ -7,6 +7,7 @@ import Login from "../Components/Pages/Login/Login";
 import Videos from "../Components/Videos/Videos";
 import Blogs from "../Components/Blogs/Blogs";
 import Quiz from "../Components/Pages/Quiz/Quiz";
+import PrivateRouter from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/quiz",
-        element: <Quiz />,
+        element: (
+          <PrivateRouter>
+            <Quiz />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/result",

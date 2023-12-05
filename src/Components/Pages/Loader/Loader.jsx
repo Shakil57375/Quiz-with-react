@@ -1,12 +1,20 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
+import { Dna } from "react-loader-spinner";
 
-function Loader() {
+const Loader = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+    <div className="container mx-auto">
+      <div className="flex justify-center items-center  my-8">
+        <Dna
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper"
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default Loader;
