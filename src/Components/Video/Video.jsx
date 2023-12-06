@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import "./Video.css";
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from "react-lazy-load";
 export default function Video({ title, id, noq }) {
   return (
     <div className="video">
-      <LazyLoad>
+      <LazyLoad offset={300}>
         <img
           src={`http://img.youtube.com/vi/${id}/maxresdefault.jpg`}
           alt={title}

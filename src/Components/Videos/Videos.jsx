@@ -14,7 +14,7 @@ const Videos = () => {
   };
 
   return (
-    <div>
+    <div className="mt-10">
       {videos.length > 0 && (
         <InfiniteScroll
           dataLength={videos.length}
@@ -22,7 +22,7 @@ const Videos = () => {
           loader={<Loader />}
           next={loadMoreVideos}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {videos.map((video) => (
               <Link
                 to={{

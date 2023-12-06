@@ -4,7 +4,7 @@ import ProgressBar from "../../ProgressBar/ProgressBar";
 import "./Quiz.css";
 const Quiz = () => {
   return (
-    <div>
+    <div className="mt-10">
       <h1 className="text-4xl font-bold">Pick three of your favorite Star Wars Films</h1>
       <h4 className="text-lg font-semibold">Question can have multiple answers</h4>
       <Answers />
