@@ -231,11 +231,11 @@ const Register = () => {
 
               <div
                 onClick={handleGoogleLogin}
-                className="flex items-center justify-center gap-4 border p-4 rounded-3xl border-black cursor-pointer"
+                className="flex  justify-center  border p-4 rounded-3xl border-black cursor-pointer"
               >
                 <div className="flex justify-center items-center gap-5">
                   <img
-                    src="../../../../images/google_image.png"
+                    src="https://i.ibb.co/xg9fXJx/google-image.png"
                     className="w-8 h-8"
                   />
                   <p className="text-2xl font-bold">Continue with google</p>
