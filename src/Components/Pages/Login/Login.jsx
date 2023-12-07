@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../../Context/AuthContext";
 import Button from "../../Button/Button";
 const Login = () => {
@@ -59,7 +59,7 @@ const Login = () => {
   };
   const handleResetPass = () => {
     const email = emailRef.current.value;
-    console.log(email)
+    console.log(email);
     if (!email) {
       toast("Please provide your email address to reset password");
       return;
@@ -158,17 +158,18 @@ const Login = () => {
                 </Button>
               </div>
               <div>
-                <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">
-                  OR
-                </p>
-
-                <div className="mb-3">
-                  <img
-                    onClick={handleGoogleLogin}
-                    className=" social-button cursor-pointer"
-                    src="https://i.ibb.co/gSTHXZJ/google-btn.png"
-                    alt=""
-                  />
+              <div className="divider">OR</div>
+                <div
+                  onClick={handleGoogleLogin}
+                  className="flex items-center justify-center gap-4 border p-4 rounded-3xl border-black cursor-pointer"
+                >
+                  <div className="flex justify-center items-center gap-5">
+                    <img
+                      src="../../../../images/google_image.png"
+                      className="w-8 h-8"
+                    />
+                    <p className="text-2xl font-bold">Continue with google</p>
+                  </div>
                 </div>
                 <ToastContainer></ToastContainer>
               </div>

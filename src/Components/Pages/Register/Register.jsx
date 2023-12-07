@@ -227,17 +227,19 @@ const Register = () => {
                 </Button>
               </div>
 
-              <p className="my-2 text-center text-2xl font-semibold border-b-2 border-slate-400 bg-opacity-10">
-                OR
-              </p>
+              <div className="divider">OR</div>
 
-              <div className="">
-                <img
-                  onClick={handleGoogleLogin}
-                  className=" social-button cursor-pointer"
-                  src="https://i.ibb.co/gSTHXZJ/google-btn.png"
-                  alt=""
-                />
+              <div
+                onClick={handleGoogleLogin}
+                className="flex items-center justify-center gap-4 border p-4 rounded-3xl border-black cursor-pointer"
+              >
+                <div className="flex justify-center items-center gap-5">
+                  <img
+                    src="../../../../images/google_image.png"
+                    className="w-8 h-8"
+                  />
+                  <p className="text-2xl font-bold">Continue with google</p>
+                </div>
               </div>
             </form>
           </div>
