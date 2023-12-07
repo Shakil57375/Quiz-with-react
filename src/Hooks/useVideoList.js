@@ -13,6 +13,7 @@ const useVideoList = (page) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
   const [videos, setVideos] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     async function fetchVideos() {
       // * database related work
@@ -36,7 +37,7 @@ const useVideoList = (page) => {
           });
           /* empty */
         } else {
-          //
+          setHasMore(false)
         }
       } catch (err) {
         console.log(err);
@@ -50,6 +51,7 @@ const useVideoList = (page) => {
     loading,
     error,
     videos,
+    hasMore
   };
 };
 

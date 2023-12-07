@@ -23,23 +23,33 @@ const Videos = () => {
           next={loadMoreVideos}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {videos.map((video) => (
-              <Link
-                to={{
-                  pathname: `/quiz/${video.youtubeID}`,
-                  state: {
-                    videoTitle: video.title,
-                  },
-                }}
-                key={video.youtubeID}
-              >
-                <Video
-                  title={video.title}
-                  id={video.youtubeID}
-                  noq={video.noq}
-                />
-              </Link>
-            ))}
+            {videos.map((video) =>
+              video.noq > 0 ? (
+                <Link
+                  to={{
+                    pathname: `/quiz/${video.youtubeID}`,
+                    state: {
+                      videoTitle: video.title,
+                    },
+                  }}
+                  key={video.youtubeID}
+                >
+                  <Video
+                    title={video.title}
+                    id={video.youtubeID}
+                    noq={video.noq}
+                  />
+                </Link>
+              ) : (
+                <div key={video.title}>
+                  <Video
+                    title={video.title}
+                    id={video.youtubeID}
+                    noq={video.noq}
+                  />
+                </div>
+              )
+            )}
           </div>
         </InfiniteScroll>
       )}
