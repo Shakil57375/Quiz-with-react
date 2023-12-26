@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { get, getDatabase, orderByKey, query, ref } from "firebase/database";
+import {
+  get,
+  getDatabase,
+  orderByKey,
+  query,
+  ref,
+} from "firebase/database";
 const useQuestion = (videoID) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(true);
@@ -9,7 +15,10 @@ const useQuestion = (videoID) => {
       // * database related work
       const db = getDatabase();
       const quizRef = ref(db, "quiz/" + videoID + "/questions");
-      const quizQuery = query(quizRef, orderByKey());
+      const quizQuery = query(
+        quizRef,
+        orderByKey()
+      );
       try {
         setError(false);
         setLoading(true);
@@ -17,7 +26,7 @@ const useQuestion = (videoID) => {
         const snapshot = await get(quizQuery);
         setLoading(false);
         if (snapshot.exists()) {
-          setQuestions((previousQuestions) => {
+            setQuestions((previousQuestions) => {
             return [...previousQuestions, ...Object.values(snapshot.val())];
           });
           /* empty */
