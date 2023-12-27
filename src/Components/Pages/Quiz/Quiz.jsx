@@ -66,6 +66,7 @@ const Quiz = () => {
               qna && qna[currentQuestion] && qna[currentQuestion]?.options
             }
             handleChanges={handleAnswerChange}
+            loading = {loading}
           />
           <ProgressBar />
           <MiniPlayer />
