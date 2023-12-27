@@ -1,9 +1,18 @@
 import Checkbox from "../Checkbox/Checkbox";
 import "./Answers.css";
-const Answers = () => {
+const Answers = ({ options = [], handleChanges }) => {
   return (
     <div className="answers">
-      <Checkbox text="Test answer" className={`answer`} />
+      {options.map((option, index) => (
+        <Checkbox
+          key={index}
+          text={option.title}
+          value={index}
+          checked={option.checked}
+          className={`answer`}
+          onChange = {(e) => handleChanges(e, index)}
+        />
+      ))}
     </div>
   );
 };
