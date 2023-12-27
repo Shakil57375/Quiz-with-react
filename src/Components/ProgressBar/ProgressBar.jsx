@@ -2,24 +2,22 @@ import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./ProgressBar.css";
 import { FaArrowRight , FaArrowLeft } from "react-icons/fa";
-const ProgressBar = () => {
+const ProgressBar = ({next, prev, progress}) => {
   return (
     <div className="progressBar">
-      <div className="backButton">
+      <div className="backButton" onClick={prev}>
         <FaArrowLeft/>
       </div>
       <div className="rangeArea">
-        <div className="tooltip">24% Cimplete!</div>
+        <div className="tooltip">{progress}% Cimplete!</div>
         <div className="rangeBody">
-          <div className="progress" style={{ width: "20%" }}></div>
+          <div className="progress" style={{ width: `${progress}%` }}></div>
         </div>
       </div>
-      <Link to={"/result"}>
-        <Button className="next">
+        <Button className="flex items-center px-6 py-2 font-semibold uppercase gap-2 rounded-xl cursor-pointer" onClick = {next}>
           <span>Next Question</span>
           <FaArrowRight />
         </Button>
-      </Link>
     </div>
   );
 };

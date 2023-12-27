@@ -50,6 +50,24 @@ const Quiz = () => {
       value: e.target.checked,
     });
   };
+  // handle when user clicks the next button to get the next question
+  const nextQuestion = () => {
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+    }
+  };
+
+  // handle when user clicks the prev button to get the prev question
+  const prevQuestion = () => {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+    }
+  };
+
+  // calculate percentage of progress
+
+  const percentage =
+    questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
 
   return (
     <div className="mt-10">
@@ -66,9 +84,13 @@ const Quiz = () => {
               qna && qna[currentQuestion] && qna[currentQuestion]?.options
             }
             handleChanges={handleAnswerChange}
-            loading = {loading}
+            loading={loading}
           />
-          <ProgressBar />
+          <ProgressBar
+            next={nextQuestion}
+            prev={prevQuestion}
+            progress={percentage}
+          />
           <MiniPlayer />
         </>
       )}

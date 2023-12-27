@@ -1,4 +1,12 @@
 /* progress bar component */
+:root {
+  --bodyBackground: #f2f4f8;
+  --successGreen: #00ff84;
+  --dangerRed: #ffc0c7;
+  --questionBG: #e4e8ee;
+  --fontPrimary: #002333;
+  --active: #2dbf64;
+}
 .progressBar {
     width: calc(100vw - 100px);
     height: 65px;
@@ -79,7 +87,7 @@
     width: 12px;
     position: absolute;
     right: 0;
-    border-radius: 100%;
+    border-radius: 50%;
     background-color: var(--fontPrimary);
     transform: translateY(-50%);
     top: 50%;
