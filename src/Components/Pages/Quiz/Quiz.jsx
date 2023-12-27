@@ -19,7 +19,7 @@ const reducer = (state, action) => {
       });
       return action.value;
     case "answer":
-      const questions = _.cloneDeep();
+      const questions = _.cloneDeep(state);
       questions[action.questionID].options[action.optionIndex].checked =
         action.value;
       return questions;
