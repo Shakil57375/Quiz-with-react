@@ -1,14 +1,16 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable no-case-declarations */
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Answers from "../../Answers/Answers";
 import MiniPlayer from "../../MiniPlayer/MiniPlayer";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 import _ from "lodash";
 import "./Quiz.css";
-import { useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import useQuestion from "../../../Hooks/useQuestion";
 import Loader from "../Loader/Loader";
+import { AuthContext } from "../../../Context/AuthContext";
+import { getDatabase, ref, set } from "firebase/database";
 const reducer = (state, action) => {
   switch (action.type) {
     case "questions":
@@ -30,11 +32,11 @@ const reducer = (state, action) => {
 const initialValue = null;
 const Quiz = () => {
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate();
   const { loading, error, questions } = useQuestion(id);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  console.log(questions);
   const [qna, dispatch] = useReducer(reducer, initialValue);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     dispatch({
       type: "questions",
@@ -60,8 +62,25 @@ const Quiz = () => {
   // handle when user clicks the prev button to get the prev question
   const prevQuestion = () => {
     if (currentQuestion >= 1 && currentQuestion <= questions.length) {
-      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+      setCurrentQuestion((prevCurrent) => prevCurrent - 1);
     }
+  };
+
+  // submit quiz
+
+  const submit = async () => {
+    const { uid } = user;
+
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
+    await set(resultRef, {
+      [id]: qna,
+    });
+    navigate(`/result/${id}`, {
+      state: {
+        qna: qna,
+      },
+    });
   };
 
   // calculate percentage of progress
@@ -90,6 +109,7 @@ const Quiz = () => {
             next={nextQuestion}
             prev={prevQuestion}
             progress={percentage}
+            submit={submit}
           />
           <MiniPlayer />
         </>
