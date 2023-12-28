@@ -14,7 +14,7 @@ const ProgressBar = ({next, prev, submit, progress}) => {
           <div className="progress" style={{ width: `${progress}%` }}></div>
         </div>
       </div>
-        <Button className="flex items-center px-6 py-2 font-semibold uppercase gap-2 rounded-xl cursor-pointer" onClick = {progress === 100 ? submit : next}>
+        <Button className="flex items-center px-6 py-2 font-semibold uppercase gap-2 rounded-xl cursor-pointer bg-[#00ff84]" onClick = {progress === 100 ? submit : next}>
           <span>Next Question</span>
           <FaArrowRight />
         </Button>
