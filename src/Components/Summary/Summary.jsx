@@ -1,5 +1,9 @@
+import { useParams } from "react-router-dom";
+import useAnswers from "../../Hooks/useAnswers";
 import "./Summary.css";
 const Summary = () => {
+  const answers = useAnswers()
+  const {id} = useParams()
   return (
     <div>
       <div className="summary">
