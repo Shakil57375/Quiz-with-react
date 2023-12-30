@@ -4,6 +4,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import "./Summary.css";
+import ResultDetails from "../ResultDetails/ResultDetails";
 const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
   console.log({ checkedIndexes });
   console.log({ correctIndexes });
@@ -41,9 +42,12 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
 
   const { numbers, titles } = extractCorrectNumbersAndTitles(correctIndexes);
 
-  const formattedData = renderCorrectNumbersAndTitles(numbers, titles);
+  const correctNumbersAndTitles = renderCorrectNumbersAndTitles(
+    numbers,
+    titles
+  );
 
-  console.log(formattedData);
+  console.log(correctNumbersAndTitles);
 
   return (
     <div>
@@ -118,7 +122,6 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
           >
             Try Again
           </Link>
-          <Link>Result Details</Link>
         </div>
         <div className="basis-1/2">
           <img src="../../../images/success.png" alt="Success" />

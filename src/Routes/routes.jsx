@@ -8,7 +8,6 @@ import Videos from "../Components/Videos/Videos";
 import Blogs from "../Components/Blogs/Blogs";
 import Quiz from "../Components/Pages/Quiz/Quiz";
 import PrivateRouter from "./PrivateRoute";
-import ResultDetails from "../Components/ResultDetails/ResultDetails";
 
 const router = createBrowserRouter([
   {
@@ -46,10 +45,6 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
-      },
-      {
-        path: "/resultDetails:id",
-        element: <ResultDetails />,
       },
     ],
   },
