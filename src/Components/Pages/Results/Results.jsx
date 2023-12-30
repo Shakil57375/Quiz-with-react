@@ -1,4 +1,4 @@
-import Analysis from "../../Analysis/Analysis";
+/* eslint-disable no-undef */
 import Summary from "../../Summary/Summary";
 import { useLocation, useParams } from "react-router-dom";
 import "./Results.css";
@@ -14,15 +14,15 @@ const Results = () => {
   console.log({ answers });
   const calculate = () => {
     let score = 0;
+    let correctIndexes = [];
+    let checkedIndexes = [];
     answers.forEach((question, index1) => {
       console.log({ question });
       console.log({ index1 });
-      let correctIndexes = [];
-      let checkedIndexes = [];
       question.options.forEach((option, index2) => {
-        if (option.correct) correctIndexes.push(index2);
+        if (option.correct) correctIndexes.push(index2, option);
         if (qna[index1].options[index2].checked) {
-          checkedIndexes.push(index2);
+          checkedIndexes.push(index2, option);
           option.checked = true;
         }
       });
@@ -30,7 +30,11 @@ const Results = () => {
         score += 5;
       }
     });
-    return score
+    return {
+      score: score,
+      correctIndexes: correctIndexes,
+      checkedIndexes: checkedIndexes,
+    };
   };
   const userScore = calculate();
   return (
@@ -39,8 +43,13 @@ const Results = () => {
       {error && <div>There was an error</div>}
       {answers && answers.length > 0 && (
         <>
-          <Summary score = {userScore} noq = {answers.length} />
-          <Analysis answers = {answers} />
+          <Summary
+            score={userScore.score}
+            correctIndexes={userScore.correctIndexes}
+            checkedIndexes={userScore.checkedIndexes}
+            noq={answers.length}
+            id={id}
+          />
         </>
       )}
     </div>
