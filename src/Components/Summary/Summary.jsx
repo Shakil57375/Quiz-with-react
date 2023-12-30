@@ -1,7 +1,5 @@
-
 import "./Summary.css";
-const Summary = () => {
-  
+const Summary = () => {  
   return (
     <div>
       <div className="summary">
