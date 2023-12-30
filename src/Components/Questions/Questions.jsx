@@ -1,7 +1,7 @@
 import Answers from "../Answers/Answers";
 import "./Questions.css";
 import { IoMdHelpCircle } from "react-icons/io";
-const Questions = () => {
+const Questions = ({answers = []}) => {
   return (
     <div className="question">
       <div className="qtitle">
