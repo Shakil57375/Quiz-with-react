@@ -1,10 +1,7 @@
-import { useParams } from "react-router-dom";
-import useAnswers from "../../Hooks/useAnswers";
+
 import "./Summary.css";
 const Summary = () => {
-  const { id } = useParams();
-  const { loading, error, answers } = useAnswers(id);
-  console.log(id);
+  
   return (
     <div>
       <div className="summary">
