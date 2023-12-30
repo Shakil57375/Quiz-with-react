@@ -7,7 +7,7 @@ import "./Summary.css";
 const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
   console.log({ checkedIndexes });
   console.log({ correctIndexes });
-  const extractNumbersAndTitles = (correctIndexes) => {
+  const extractCorrectNumbersAndTitles = (correctIndexes) => {
     const numbers = [];
     const titles = [];
 
@@ -23,7 +23,7 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
     return { numbers, titles };
   };
 
-  const renderNumbersAndTitles = (numbers, titles) => {
+  const renderCorrectNumbersAndTitles = (numbers, titles) => {
     const result = [];
 
     for (let i = 0; i < Math.min(numbers.length, titles.length); i++) {
@@ -39,9 +39,9 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
     return result;
   };
 
-  const { numbers, titles } = extractNumbersAndTitles(correctIndexes);
+  const { numbers, titles } = extractCorrectNumbersAndTitles(correctIndexes);
 
-  const formattedData = renderNumbersAndTitles(numbers, titles);
+  const formattedData = renderCorrectNumbersAndTitles(numbers, titles);
 
   console.log(formattedData);
 
@@ -118,6 +118,7 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
           >
             Try Again
           </Link>
+          <Link>Result Details</Link>
         </div>
         <div className="basis-1/2">
           <img src="../../../images/success.png" alt="Success" />
