@@ -4,13 +4,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import "./Summary.css";
+import { useState } from "react";
+import Button from "../Button/Button";
 const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
   console.log({ checkedIndexes });
   console.log({ correctIndexes });
   const extractCorrectNumbersAndTitles = (correctIndexes) => {
     const numbers = [];
     const titles = [];
-
     correctIndexes.map((item, index) => {
       if (typeof item === "number") {
         numbers.push(item);
@@ -27,10 +28,8 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
     const result = [];
 
     for (let i = 0; i < Math.min(numbers.length, titles.length); i++) {
-      const formattedString = `${numbers[i]} : ${titles[i]}`;
       result.push({
         index: i,
-        formattedString,
         number: numbers[i],
         title: titles[i],
       });
@@ -48,11 +47,56 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
 
   console.log(correctNumbersAndTitles);
 
+  const extractCheckedNumbersAndTitles = (checkedIndexes) => {
+    const checkedNumbers = [];
+    const checkedTitles = [];
+    checkedIndexes.map((item, index) => {
+      if (typeof item === "number") {
+        checkedNumbers.push(item);
+      } else if (typeof item === "object" && item.hasOwnProperty("title")) {
+        checkedTitles.push(item.title);
+      }
+      return item; // Required for map function, but not used in this example.
+    });
+
+    return { checkedNumbers, checkedTitles };
+  };
+
+  const renderCheckedNumbersAndTitles = (numbers, titles) => {
+    const result = [];
+
+    for (let i = 0; i < Math.min(numbers.length, titles.length); i++) {
+      result.push({
+        index: i,
+        number: numbers[i],
+        title: titles[i],
+      });
+    }
+
+    return result;
+  };
+
+  const { checkedNumbers, checkedTitles } =
+    extractCheckedNumbersAndTitles(checkedIndexes);
+
+  const checkedNumbersAndTitles = renderCheckedNumbersAndTitles(
+    checkedNumbers,
+    checkedTitles
+  );
+
+  console.log(checkedNumbersAndTitles);
+
+  const [showAns, setShowAns] = useState(false);
+
+  const showAnswers = () => {
+    setShowAns(!showAns);
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center  lg:flex-row flex-col mt-20">
-        <div className="flex flex-col gap-5 basis-1/2 items-center">
-          <div className="flex flex-col items-center gap-5">
+        <div className="flex flex-col gap-5 basis-1/2">
+          <div className="flex items-center flex-col">
             <p className="text-2xl font-bold">
               <p>Your score is</p>
               <span className="text-blue-600">{score}</span> out of{" "}
@@ -119,21 +163,48 @@ const Summary = ({ score, noq, id, correctIndexes, checkedIndexes }) => {
             </p>
             <Link
               to={`/quiz/${id}`}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+              className="bg-[#00ff84] hover:bg-[#002333] text-gray-800 hover:text-white font-bold py-3 px-5 rounded-xl inline-flex items-center  "
             >
               Try Again
             </Link>
+            <Button
+              onClick={showAnswers}
+              className="bg-[#00ff84] hover:bg-[#002333] text-gray-800 hover:text-white font-bold py-3 px-5 rounded-xl inline-flex items-center mt-4"
+            >
+              {showAns ? "Hide Result Analysis" : "Show Result Analysis"}
+            </Button>
           </div>
 
-          <div>
-            <div>
-              {correctNumbersAndTitles.map((correctNumberAndTitle) => (
-                <div key={correctNumberAndTitle.index}>
-                  <p> {correctNumberAndTitle.number} : {correctNumberAndTitle.title}</p>
-                </div>
-              ))}
+          {showAns && (
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-2xl font-bold text-green-600">
+                  Correct Answers
+                </h1>
+                {correctNumbersAndTitles.map((correctNumberAndTitle) => (
+                  <div key={correctNumberAndTitle.index}>
+                    <p>
+                      {" "}
+                      {correctNumberAndTitle.number} :{" "}
+                      {correctNumberAndTitle.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-red-600">Your Answer</h1>
+                {checkedNumbersAndTitles.map((correctNumberAndTitle) => (
+                  <div key={correctNumberAndTitle.index}>
+                    <p>
+                      {" "}
+                      {correctNumberAndTitle.number} :{" "}
+                      {correctNumberAndTitle.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="basis-1/2">
           <img src="../../../images/success.png" alt="Success" />
